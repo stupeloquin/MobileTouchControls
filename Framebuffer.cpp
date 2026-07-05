@@ -820,6 +820,8 @@ namespace touchcontrols
         float top = 1;
         float bottom = -1;
 
+        glViewport(0, 0, m_fb_config.vidWidthReal, m_fb_config.vidHeightReal);
+
         if(m_fb_config.maintainAspect)
         {
             float realRatio = (float) m_fb_config.vidWidthReal / (float) m_fb_config.vidHeightReal;
@@ -839,6 +841,9 @@ namespace touchcontrols
                 bottom = -yScale;
             }
 
+            // Scissor test affects glClear; the engine may leave it enabled around the game
+            // viewport, which would clip the clear and leave the letterbox bars uncleared.
+            glDisable(GL_SCISSOR_TEST);
             glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
         }
@@ -878,8 +883,6 @@ namespace touchcontrols
             glEnableVertexAttribArray(m_positionLoc);
             glEnableVertexAttribArray(m_texCoordLoc);
 
-            glViewport(0, 0, m_fb_config.vidWidthReal, m_fb_config.vidHeightReal);
-
             glDisable(GL_BLEND);
             glDisable(GL_SCISSOR_TEST);
             glDisable(GL_DEPTH_TEST);
@@ -892,8 +895,6 @@ namespace touchcontrols
         {
             glVertexPointer(3, GL_FLOAT, 0, vert);
             glTexCoordPointer(2, GL_FLOAT, 0, texVert);
-
-            glViewport(0, 0, m_fb_config.vidWidthReal, m_fb_config.vidHeightReal);
 
             glDisable(GL_BLEND);
             glDisable(GL_SCISSOR_TEST);
