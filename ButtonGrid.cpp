@@ -205,9 +205,9 @@ bool ButtonGrid::drawGL(bool forEditor)
     float cellHeight = controlPos.height() / yNbr;
     cellRect.resize(cellWidth, cellHeight);
 
-    bool aspect = gl_getFixAspect(); // Save old
+    //bool aspect = gl_getFixAspect(); // Save old
 
-    gl_setFixAspect(false);   // Turn off aspect fixing for this
+   // gl_setFixAspect(false);   // Turn off aspect fixing for this
 
     // Screen-aspect correction: grid X and Y units don't map to equal screen pixels
     // unless the screen matches the nominal grid ratio. We work in "screen units"
@@ -260,7 +260,7 @@ bool ButtonGrid::drawGL(bool forEditor)
             }
         }
 
-    gl_setFixAspect(aspect);
+   //gl_setFixAspect(aspect);
 
     return false;
 }
