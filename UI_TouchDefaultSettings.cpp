@@ -183,7 +183,7 @@ namespace touchcontrols
         settings.digitalMove = false;
         settings.showLeftStick = true;
         settings.showRightStick = true;
-        settings.joystickLookMode = false;
+        settings.joystickLookMode = true;
         settings.autoHideInventory = true;
         settings.autoHideNumbers = true;
         settings.weaponWheelEnabled = true;
