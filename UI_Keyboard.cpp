@@ -538,6 +538,15 @@ bool UI_Keyboard::drawGL(bool forEditor)
                     {
                         // Make images a bit greyer than letters
                         gl_color4f(0.5, 0.5, 0.5, alpha);
+
+                        // Shift and the symbol key latch, and nothing said so: the
+                        // letters change case, but on a number or a function key
+                        // there was no way to tell whether Shift was on. Light them
+                        // while they are.
+                        if((key->keyPrim == UI_KEYBOARD_SHIFT && shiftActive) ||
+                           (key->keyPrim == UI_KEYBOARD_SYMBOLS && symbolActive))
+                            gl_color4f(0.45, 1.0, 0.55, alpha);
+
                         gl_drawRect(key->glPrim, rowXPos, rowYPos, glRect);
                     }
                     else
