@@ -89,6 +89,15 @@ namespace touchcontrols
 
         sigc::signal<void, uint32_t> signal;
 
+        /**
+         * Whether Shift is latched on. The key press itself only carries a
+         * character, and shifting a letter is done by sending the upper-case one -
+         * so anything that is not a letter needs to ask this and send Shift along
+         * with the key. Shift+F1 and Shift+1 mean nothing otherwise, and games
+         * bind plenty of those.
+         */
+        bool isShiftActive() { return shiftActive; }
+
         bool processPointer(int action, int pid, float x, float y);
 
         bool gamepadInput(bool down, GamePadKey key);
